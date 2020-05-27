@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.how2java.tmall.dao.PropertyDao">
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true" parameterType="Property">
+      insert into property (cid, name)
+      values (#{cid,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR})
+    </insert>
+
+    <update id="update" parameterType="Property">
+        update property set name=#{name} where id=#{id}
+    </update>
+
+    <delete id="delete">
+        delete from property where id = #{id}
+    </delete>
+
+    <select id="selectOne" resultType="Property">
+        select * from property  where id= #{id}
+    </select>
+
+
+    <select id="findAll" resultType="Property">
+        select * from property
+    </select>
+    <select id="findByCategory" parameterType="java.lang.Integer" resultType="Property">
+        select * from property where cid = #{cid}
+    </select>
+</mapper>

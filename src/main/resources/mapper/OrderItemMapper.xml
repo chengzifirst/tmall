@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.how2java.tmall.dao.OrderItemDao">
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true" parameterType="OrderItem">
+      insert into orderitem (pid, oid, uid, number)
+      values (#{pid,jdbcType=INTEGER}, #{oid,jdbcType=INTEGER}, #{uid,jdbcType=INTEGER}, #{number,jdbcType=INTEGER})
+    </insert>
+
+    <update id="update" parameterType="OrderItem">
+        update orderitem
+    set pid = #{pid,jdbcType=INTEGER},
+      oid = #{oid,jdbcType=INTEGER},
+      uid = #{uid,jdbcType=INTEGER},
+      number = #{number,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <delete id="delete">
+        delete from orderitem where id = #{id}
+    </delete>
+
+    <select id="selectOne" resultType="OrderItem">
+        select * from orderitem where id= #{id}
+    </select>
+
+    <select id="findByOrder" parameterType="java.lang.Integer" resultType="OrderItem">
+        select * from orderitem where oid = #{oid}
+    </select>
+</mapper>

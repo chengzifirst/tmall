@@ -1,6 +1,8 @@
 package com.how2java.tmall.controller;
 
+import com.how2java.tmall.pojo.Category;
 import com.how2java.tmall.pojo.Property;
+import com.how2java.tmall.service.CategoryService;
 import com.how2java.tmall.service.PropertyService;
 import com.how2java.tmall.util.Page4Navigator;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +15,9 @@ public class PropertyController {
     @Autowired
     PropertyService propertyService;
 
+    @Autowired
+    CategoryService categoryService;
+
     @GetMapping("/categories/{cid}/properties")
     public Page4Navigator<Property> list(@PathVariable("cid") int cid, @RequestParam(value = "start", defaultValue = "0") int start, @RequestParam(value = "size", defaultValue = "5") int size) throws Exception {
         start = start < 0 ? 0 : start;
@@ -23,6 +28,11 @@ public class PropertyController {
     @GetMapping("/properties/{id}")
     public Property get(@PathVariable("id") int id) throws Exception {
         Property bean = propertyService.selectOne(id);
+
+/*        前端要获取bean.category
+        * 不进行如下步骤bean.category的值默认为空*/
+        Category c = categoryService.get(bean.getCid());
+        bean.setCategory(c);
         return bean;
     }
 

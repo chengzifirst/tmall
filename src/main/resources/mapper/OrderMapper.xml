@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.how2java.tmall.dao.OrderDao">
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true" parameterType="Order">
+      insert into order_ (orderCode, address, post,
+      receiver, mobile, userMessage,
+      createDate, payDate, deliveryDate,
+      confirmDate, uid, status
+      )
+    values (#{orderCode,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{post,jdbcType=VARCHAR},
+      #{receiver,jdbcType=VARCHAR}, #{mobile,jdbcType=VARCHAR}, #{userMessage,jdbcType=VARCHAR},
+      #{createDate,jdbcType=TIMESTAMP}, #{payDate,jdbcType=TIMESTAMP}, #{deliveryDate,jdbcType=TIMESTAMP},
+      #{confirmDate,jdbcType=TIMESTAMP}, #{uid,jdbcType=INTEGER}, #{status,jdbcType=VARCHAR}
+      )
+    </insert>
+
+    <update id="update" parameterType="Order">
+        update order_
+    set orderCode = #{orderCode,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      post = #{post,jdbcType=VARCHAR},
+      receiver = #{receiver,jdbcType=VARCHAR},
+      mobile = #{mobile,jdbcType=VARCHAR},
+      userMessage = #{userMessage,jdbcType=VARCHAR},
+      createDate = #{createDate,jdbcType=TIMESTAMP},
+      payDate = #{payDate,jdbcType=TIMESTAMP},
+      deliveryDate = #{deliveryDate,jdbcType=TIMESTAMP},
+      confirmDate = #{confirmDate,jdbcType=TIMESTAMP},
+      uid = #{uid,jdbcType=INTEGER},
+      status = #{status,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <delete id="delete">
+        delete from order_ where id = #{id}
+    </delete>
+
+    <select id="selectOne" resultType="Order">
+        select * from order_ where id= #{id}
+    </select>
+
+    <select id="findAll" parameterType="java.lang.Integer" resultType="Order">
+        select * from order_
+    </select>
+</mapper>

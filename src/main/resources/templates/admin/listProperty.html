@@ -29,7 +29,7 @@
                     var url = "categories/"+cid;
                     axios.get(url).then(function(response) {
                         vue.category = response.data;
-                    })
+                    });
                 },
                 list:function(start){
                     var url =  "categories/"+cid+"/"+this.uri+"?start="+start;

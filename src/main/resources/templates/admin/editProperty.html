@@ -12,8 +12,8 @@
             uri: 'properties',
             listURL:'admin_property_list',
             bean: '',
-            cid:'',
-            category:''
+            category:'',
+            cid:''
         };
 
         //ViewModel
@@ -29,7 +29,7 @@
                     var url = this.uri+"/"+id;
                     axios.get(url).then(function(response) {
                         vue.bean = response.data;
-                        vue.cid = vue.bean.cid;
+                        vue.category = vue.bean.category;
                     })
                 },
                 update:function () {

@@ -18,7 +18,6 @@ import static com.how2java.tmall.util.ListConvertToPage.listConvertToPage;
 public class PropertyService {
     @Autowired
     PropertyDao propertyDao;
-    CategoryService categoryService;
 
     public void insert(Property property){
         propertyDao.insert(property);
@@ -44,5 +43,10 @@ public class PropertyService {
         Page<Property> pageFromMybatis = listConvertToPage(cs,pageable);
         return new Page4Navigator<>(pageFromMybatis,navigatePages);
     }
+
+    public List<Property> findByCategory(int cid){
+        return propertyDao.findByCategory(cid);
+    }
+
 
 }

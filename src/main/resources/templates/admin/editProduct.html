@@ -12,8 +12,7 @@
             uri: 'products',
             listURL:'admin_product_list',
             bean: '',
-            category:'',
-            cid:''
+            category:''
         };
 
         //ViewModel
@@ -30,7 +29,6 @@
                     axios.get(url).then(function(response) {
                         vue.bean = response.data;
                         vue.category = vue.bean.category;
-                        vue.cid = vue.bean.cid
                     })
                 },
                 update:function () {

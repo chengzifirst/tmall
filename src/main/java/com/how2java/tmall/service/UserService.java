@@ -31,4 +31,21 @@ public class UserService {
         Page<User> page = listConvertToPage(cs,pageable);
         return new Page4Navigator<>(page,navigatePages);
     }
+
+    public void insert(User user){
+        userDao.insert(user);
+    }
+
+    public User findByName(String name){
+        return userDao.findByName(name);
+    }
+
+    public boolean isExist(String name){
+        User user = findByName(name);
+        return null!=user;
+    }
+
+    public User findByNameAndPassword(String name,String password){
+        return userDao.findByNameAndPassword(name,password);
+    }
 }

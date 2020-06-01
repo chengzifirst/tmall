@@ -28,27 +28,13 @@ public class ProductImageService {
         return productImageDao.selectOne(id);
     }
 
-    public List<ProductImage> listSingleProductImages(int pid){
-        return productImageDao.findByProductAndType(pid,type_single);
+    public List<ProductImage> listSingleProductImages(Product product){
+        return productImageDao.findByProductAndType(product.getId(),type_single);
     }
 
-    public List<ProductImage> listDetailProductImages(int pid){
-        return productImageDao.findByProductAndType(pid,type_detail);
+    public List<ProductImage> listDetailProductImages(Product product){
+        return productImageDao.findByProductAndType(product.getId(),type_detail);
     }
-
-   /* public void setFirstProdutImage(Product product) {
-        List<ProductImage> singleImages = listSingleProductImages(product.getId());
-        if(!singleImages.isEmpty())
-            product.setFirstProductImage(singleImages.get(0));
-        else
-            product.setFirstProductImage(new ProductImage()); //这样做是考虑到产品还没有来得及设置图片，但是在订单后台管理里查看订单项的对应产品图片。
-
-    }
-    public void setFirstProdutImages(List<Product> products) {
-        for (Product product : products)
-            setFirstProdutImage(product);
-    }*/
-
 
 
 }

@@ -21,4 +21,12 @@
     <select id="findAll" resultType="User">
         select * from user
     </select>
+
+    <select id="findByName" parameterType="String" resultType="User">
+        select * from user  where name= #{name}
+    </select>
+
+    <select id="findByNameAndPassword" resultType="User">
+        select * from user  where name= #{name} and password = #{password}
+    </select>
 </mapper>

@@ -3,6 +3,7 @@ package com.how2java.tmall.pojo;
 import org.springframework.data.annotation.Transient;
 
 import java.util.Date;
+import java.util.List;
 
 public class Product {
     private Integer id;
@@ -12,11 +13,53 @@ public class Product {
     private float promotePrice;
     private Integer stock;
     private Integer cid;
-    private Date createdate;
+    private Date createDate;
 
+    private Category category;
     //如果既没有指明 关联到哪个Column,又没有明确要用@Transient忽略，那么就会自动关联到表对应的同名字段
     @Transient
     private ProductImage firstProductImage;
+    @Transient
+    private List<ProductImage> productSingleImages;
+    @Transient
+    private List<ProductImage> productDetailImages;
+    @Transient
+    private int reviewCount;
+    @Transient
+    private int saleCount;
+
+    public List<ProductImage> getProductSingleImages() {
+        return productSingleImages;
+    }
+
+    public void setProductSingleImages(List<ProductImage> productSingleImages) {
+        this.productSingleImages = productSingleImages;
+    }
+
+    public List<ProductImage> getProductDetailImages() {
+        return productDetailImages;
+    }
+
+    public void setProductDetailImages(List<ProductImage> productDetailImages) {
+        this.productDetailImages = productDetailImages;
+    }
+
+    public int getReviewCount() {
+        return reviewCount;
+    }
+
+    public void setReviewCount(int reviewCount) {
+        this.reviewCount = reviewCount;
+    }
+
+    public int getSaleCount() {
+        return saleCount;
+    }
+
+    public void setSaleCount(int saleCount) {
+        this.saleCount = saleCount;
+    }
+
     public ProductImage getFirstProductImage() {
         return firstProductImage;
     }
@@ -24,10 +67,6 @@ public class Product {
     public void setFirstProductImage(ProductImage firstProductImage) {
         this.firstProductImage = firstProductImage;
     }
-
-
-
-    private Category category;
 
     public Category getCategory() {
         return category;
@@ -92,15 +131,12 @@ public class Product {
     public void setCid(Integer cid) {
         this.cid = cid;
     }
-    
-    public Date getCreatedate() {
-        return createdate;
+
+    public Date getCreateDate() {
+        return createDate;
     }
 
-    public void setCreatedate(Date createdate) {
-        this.createdate = createdate;
+    public void setCreateDate(Date createDate) {
+        this.createDate = createDate;
     }
-
-
-
 }

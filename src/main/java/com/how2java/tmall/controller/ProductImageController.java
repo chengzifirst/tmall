@@ -27,11 +27,12 @@ public class ProductImageController {
 
     @GetMapping("/products/{pid}/productImages")
     public List<ProductImage> findByProductAndType(@PathVariable("pid") int pid,@RequestParam("type") String type) throws Exception{
+        Product product = productService.selectOne(pid);
         if(productImageService.type_single.equals(type)){
-            return productImageService.listSingleProductImages(pid);
+            return productImageService.listSingleProductImages(product);
         }
         else if(productImageService.type_detail.equals(type)){
-            return productImageService.listDetailProductImages(pid);
+            return productImageService.listDetailProductImages(product);
         }
         else{
             return new ArrayList<>();

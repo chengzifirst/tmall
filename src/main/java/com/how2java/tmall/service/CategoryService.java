@@ -2,6 +2,7 @@ package com.how2java.tmall.service;
 
 import com.how2java.tmall.dao.CategoryDao;
 import com.how2java.tmall.pojo.Category;
+import com.how2java.tmall.pojo.Product;
 import com.how2java.tmall.util.Page4Navigator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.*;
@@ -44,6 +45,35 @@ public class CategoryService {
         List<Category> cs = categoryDao.findAll();
         Page pageFromMybatis = listConvertToPage(cs,pageable);
         return new Page4Navigator<>(pageFromMybatis,navigatePages);
+    }
+
+    public List<Category> list(){
+        return categoryDao.findAll();
+    }
+
+    /*删除Product对象的Category，防止无限递归*/
+    public void removeCategoryFromProduct(Category category){
+        List<Product> products = category.getProducts();
+        if(null != products){
+            for(Product product : products){
+                product.setCategory(null);
+            }
+        }
+
+        List<List<Product>> productByRow = category.getProductsByRow();
+        if(null != productByRow){
+            for(List<Product> ps : productByRow){
+                for(Product p : ps){
+                    p.setCategory(null);
+                }
+            }
+        }
+    }
+
+    public void removeCategoryFromProduct(List<Category> categories){
+        for(Category c : categories){
+            removeCategoryFromProduct(c);
+        }
     }
 
 }

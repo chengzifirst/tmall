@@ -18,11 +18,15 @@
         select * from product  where id= #{id}
     </select>
 
-
     <select id="findAll" resultType="Product">
         select * from product
     </select>
+
     <select id="findByCategory" parameterType="java.lang.Integer" resultType="Product">
         select * from product where cid = #{cid}
+    </select>
+
+    <select id="findByNameLike" parameterType="java.lang.String" resultType="Product">
+        select * from product where name like concat('%',#{keyword},'%')
     </select>
 </mapper>

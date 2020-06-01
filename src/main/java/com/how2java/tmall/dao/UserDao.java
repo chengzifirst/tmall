@@ -16,4 +16,7 @@ public interface UserDao {
     User selectOne(int id);
     List<User> findAll();
 
+    User findByName(String name);
+    User findByNameAndPassword(String name,String password);
+
 }

@@ -15,4 +15,5 @@ public interface ProductDao {
 
     Product selectOne(int id);
     List<Product> findByCategory(int cid);
+    List<Product> findByNameLike(String keyword);
 }

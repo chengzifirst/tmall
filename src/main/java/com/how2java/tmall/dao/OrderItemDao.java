@@ -15,5 +15,5 @@ public interface OrderItemDao {
 
     OrderItem selectOne(int id);
     List<OrderItem> findByOrder(int oid);
-
+    List<OrderItem> findByProduct(int pid);
 }

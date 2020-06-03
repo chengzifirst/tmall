@@ -4,6 +4,7 @@ import com.how2java.tmall.dao.OrderItemDao;
 import com.how2java.tmall.pojo.Order;
 import com.how2java.tmall.pojo.OrderItem;
 import com.how2java.tmall.pojo.Product;
+import com.how2java.tmall.pojo.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +14,9 @@ import java.util.List;
 public class OrderItemService {
     @Autowired
     OrderItemDao orderItemDao;
+
+    @Autowired
+    ProductService productService;
 
     public void insert(OrderItem orderItem){
         orderItemDao.insert(orderItem);
@@ -27,7 +31,10 @@ public class OrderItemService {
     }
 
     public OrderItem selectOne(int id){
-        return orderItemDao.selectOne(id);
+        OrderItem orderItem = orderItemDao.selectOne(id);
+        Product product = productService.selectOne(orderItem.getPid());
+        orderItem.setProduct(product);
+        return orderItem;
     }
 
     public List<OrderItem> findByOrder(int oid){
@@ -36,6 +43,10 @@ public class OrderItemService {
 
     public List<OrderItem> findByProduct(int pid){
         return orderItemDao.findByProduct(pid);
+    }
+
+    public List<OrderItem> findByUser(User user){
+        return orderItemDao.findByUserAndOrderIsNull(user.getId());
     }
 
     public int getSaleCount(Product product) {

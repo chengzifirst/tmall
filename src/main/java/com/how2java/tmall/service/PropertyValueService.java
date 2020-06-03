@@ -29,7 +29,14 @@ public class PropertyValueService {
     }
 
     public List<PropertyValue> findByProduct(int pid){
-        return propertyValueDao.findByProduct(pid);
+        List<PropertyValue> propertyValues = propertyValueDao.findByProduct(pid);
+        for(PropertyValue p : propertyValues){
+            Product product = productService.selectOne(p.getPid());
+            Property property = propertyService.selectOne(p.getPtid());
+            p.setProduct(product);
+            p.setProperty(property);
+        }
+        return propertyValues;
     }
 
    /* 初始化的意思是：

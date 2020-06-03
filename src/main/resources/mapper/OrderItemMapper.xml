@@ -30,4 +30,8 @@
     <select id="findByProduct" parameterType="java.lang.Integer" resultType="OrderItem">
         select * from orderitem where pid = #{pid}
     </select>
+
+    <select id="findByUserAndOrderIsNull" parameterType="java.lang.Integer" resultType="OrderItem">
+        select * from orderitem where uid = #{uid}
+    </select>
 </mapper>

@@ -7,7 +7,7 @@ public class Review {
     private String content;
     private Integer uid;
     private Integer pid;
-    private Date createdate;
+    private Date createDate;
 
     private User user;
     private Product product;
@@ -59,13 +59,12 @@ public class Review {
     public void setPid(Integer pid) {
         this.pid = pid;
     }
-    
-    public Date getCreatedate() {
-        return createdate;
+
+    public Date getCreateDate() {
+        return createDate;
     }
 
-    public void setCreatedate(Date createdate) {
-        this.createdate = createdate;
+    public void setCreateDate(Date createDate) {
+        this.createDate = createDate;
     }
-
 }

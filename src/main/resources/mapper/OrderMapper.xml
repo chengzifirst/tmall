@@ -42,4 +42,8 @@
     <select id="findAll" parameterType="java.lang.Integer" resultType="Order">
         select * from order_
     </select>
+
+    <select id="findByUserAndStatusNot"  resultType="Order">
+        select * from order_ where uid= #{uid} and status != #{status}
+    </select>
 </mapper>

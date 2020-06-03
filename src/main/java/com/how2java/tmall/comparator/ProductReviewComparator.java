@@ -1,4 +1,4 @@
-package com.how2java.tmall.Comparator;
+package com.how2java.tmall.comparator;
 
 import com.how2java.tmall.pojo.Product;
 

@@ -2,6 +2,7 @@ package com.how2java.tmall.service;
 
 import com.how2java.tmall.dao.ProductDao;
 import com.how2java.tmall.pojo.Category;
+import com.how2java.tmall.pojo.OrderItem;
 import com.how2java.tmall.pojo.Product;
 import com.how2java.tmall.pojo.ProductImage;
 import com.how2java.tmall.util.Page4Navigator;
@@ -123,6 +124,13 @@ public class ProductService {
         Page<Product> page = listConvertToPage(products,pageable);
         return page.getContent();
     }
+
+    public void setFirstProdutImagesOnOrderItems(List<OrderItem> ois) {
+        for (OrderItem orderItem : ois) {
+            setFirstProdutImage(orderItem.getProduct());
+        }
+    }
+
 
 }
 

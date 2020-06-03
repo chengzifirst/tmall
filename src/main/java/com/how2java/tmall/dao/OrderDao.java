@@ -1,6 +1,7 @@
 package com.how2java.tmall.dao;
 
 import com.how2java.tmall.pojo.Order;
+import com.how2java.tmall.pojo.User;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
@@ -15,4 +16,5 @@ public interface OrderDao {
 
     Order selectOne(int id);
     List<Order> findAll();
+    List<Order> findByUserAndStatusNot(int uid, String status);
 }
